@@ -148,7 +148,7 @@ int elegir_empleados()
 
 
 int main(){
-	int volver;
+	char volver;
 	Templeados em[5];
 	inicializar_empleados(em);
 	inicializar_puestos(em);
@@ -157,9 +157,10 @@ int main(){
 			elegir_empleados(em);
 			inicializar_menu_empleados(em);
 			Sueldo_horas(em);
-			printf("Quieres entrar en otro usuario?[S/N]\n");
-			scanf("%i",&volver);
-	}while(volver ='S');
+			printf("Quieres entrar en otro usuario?[s/n]\n");
+			scanf("%c",&volver);
+
+	}while(volver != 'n');
 	
 	
 	
