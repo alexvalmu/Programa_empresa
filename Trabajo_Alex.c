@@ -23,7 +23,6 @@ typedef struct
 	int meses;
 	char puesto[15];
 
-
 }Templeados;
 
 
@@ -61,6 +60,21 @@ void inicializar_puestos(Templeados em[])
 
 }
 
+void inicizar_meses(Templeados em[])
+{
+
+	  em[0].meses= 12;
+	  em[1].meses= 10;
+	  em[2].meses= 6;
+	  em[3].meses= 20;
+	  em[4].meses= 3;
+	  em[5].meses= 16;
+	
+
+
+}
+
+
 
 
 void inicializar_menu_empleados(Templeados em[])
@@ -71,8 +85,8 @@ void inicializar_menu_empleados(Templeados em[])
 	printf("Introduce tu hora de entrada y tu hora de salida:\n");
 	scanf("%i%i",&em[e].entrada,&em[e].salida);
 	cleanbuffer();
-	printf("¿Cuántos meses llevas en la empresa?\n");
-	scanf("%i",&em[e].meses);
+	//printf("¿Cuántos meses llevas en la empresa?\n");
+	//scanf("%i",&em[e].meses);
 	
 do{
 	printf("Introduce la operación que quieres hacer: 1-Ver sueldo actual y horas trabajadas   2-Ver horario  3-Pedir aumento  4-Introducir quejas  5-Salir:\n");
@@ -84,15 +98,27 @@ do{
 	case 1:
 		 Sueldo_horas(em);
 		 break;
-	case 2: 
+	case 2:
+		if(em[e].horas_totales >= 8){
+
+		
 		printf("\t   Lu\t   Ma\t   Mi\t   Ju\t   Vi\t   Sa\t   Do\n");
 		for(i=0;i<=4;i++)
-		{
+			{
 				printf("Semana%i\t   %i-%i\t   %i-%i\t   %i-%i\t   %i-%i\t    %i-%i   //\t   //\t\n",i,em[e].entrada,em[e].salida,em[e].entrada,em[e].salida,em[e].entrada,em[e].salida,em[e].entrada,em[e].salida,em[e].entrada,em[e].salida);
 
-		}
-  	
-  	
+			}
+  	}
+  	else{
+
+  	printf("\t   Lu\t   Ma\t   Mi\t   Ju\t   Vi\t   Sa\t   Do\n");
+			for(i=0;i<=4;i++)
+			{
+				printf("Semana%i\t   //\t   //\t   %i-%i\t   %i-%i\t    %i-%i   %i-%i\t   %i-%i\t\n",i,em[e].entrada,em[e].salida,em[e].entrada,em[e].salida,em[e].entrada,em[e].salida,em[e].entrada,em[e].salida,em[e].entrada,em[e].salida);
+
+			}
+
+  	}
   	
 		 break;
 	case 3: 
@@ -157,6 +183,7 @@ int main(){
 			elegir_empleados(em);
 			inicializar_menu_empleados(em);
 			Sueldo_horas(em);
+			inicizar_meses(em);
 			printf("Quieres entrar en otro usuario?[s/n]\n");
 			scanf("%c",&volver);
 
