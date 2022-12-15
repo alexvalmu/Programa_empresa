@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
-
+#include <math.h>
 
 
 
@@ -49,8 +49,7 @@ void inicializar_codigo_empleado(char empleado[])
 //Este módulo sirve para inicializar la contraseña para acceder al menú del director
 void inicializar_codigo_Director(char director[])
 {
-	
- 		sprintf(director,"Director01");
+	sprintf(director,"Director01");
 }
 
 
@@ -75,8 +74,6 @@ void inicializar_puestos(Templeados em[])
  	sprintf(em[3].puesto,"Ventas");
  	sprintf(em[4].puesto,"Logística");
  	sprintf(em[5].puesto,"Logística");
-
-
 }
 
 
@@ -197,15 +194,28 @@ void pregunta_horarios(Templeados em[],int e)
 	printf("Introduce tu hora de entrada y tu hora de salida:\n");
 	scanf("%i %i",&em[e].entrada,&em[e].salida);
 	cleanbuffer();
+	em[e].horas_totales = em[e].salida - em[e].entrada;
+	
+	if(em[e].horas_totales<0){
+		em[e].horas_totales = fabs(em[e].horas_totales);
 
+	} else{
+		em[e].horas_totales = em[e].salida - em[e].entrada;
+	}
 
 }
 
-//Este módulo sirve para calcular las horas trabajadas por dia yel sueldo de cada persona y almacenarlo estos datos en las arrays horas_totales y sueldo 
+//Este módulo sirve para calcular las horas trabajadas por dia y el sueldo de cada persona y almacenarlo estos datos en las arrays horas_totales y sueldo 
 int Sueldo_horas(Templeados em[],int e)
 {	
 		em[e].horas_totales = em[e].salida - em[e].entrada;
 
+	if(em[e].horas_totales<0){
+		em[e].horas_totales = fabs(em[e].horas_totales);
+
+	}else{
+		em[e].horas_totales = em[e].salida - em[e].entrada;
+	}
 		em[e].sueldo = (10 * em[e].horas_totales *25 );
 
 		printf("Has trabajado %i horas por día, por lo tanto a 10€ la hora tu sueldo es de %i euros mensuales\n", em[e].horas_totales, em[e].sueldo);
@@ -220,7 +230,7 @@ void imprimir_horarios(Templeados em[],int e)
 	int i;
 	
 
-		if(em[e].horas_totales >= 8){
+		if(em[e].horas_totales >= 8 || em[e].horas_totales==0){
 
 		
 		printf("\t   Lu\t   Ma\t   Mi\t   Ju\t   Vi\t   Sa\t   Do\n");
@@ -235,7 +245,7 @@ void imprimir_horarios(Templeados em[],int e)
   	printf("\t   Lu\t   Ma\t   Mi\t   Ju\t   Vi\t   Sa\t   Do\n");
 			for(i=0;i<=4;i++)
 			{
-				printf("Semana%i\t   //\t   //\t   %i-%i\t   %i-%i\t    %i-%i   %i-%i\t   %i-%i\t\n",i,em[e].entrada,em[e].salida,em[e].entrada,em[e].salida,em[e].entrada,em[e].salida,em[e].entrada,em[e].salida,em[e].entrada,em[e].salida);
+				printf("Semana%i\t   //\t   //\t   %i-%i   %i-%i    %i-%i   %i-%i   %i-%i\n",i,em[e].entrada,em[e].salida,em[e].entrada,em[e].salida,em[e].entrada,em[e].salida,em[e].entrada,em[e].salida,em[e].entrada,em[e].salida);
 
 			}
 
@@ -254,41 +264,44 @@ void menu_empleados(Templeados em[],int e)
 
 	
 	
-do{
-	printf("Introduce la operación que quieres hacer: 1-Ver sueldo actual y horas trabajadas   2-Ver horario  3-Pedir aumento  4-Introducir quejas  5-Volver:\n");
-	scanf("%i",&opcion);
-	cleanbuffer();
+	do{
+		printf("Introduce la operación que quieres hacer: 1-Ver sueldo actual y horas trabajadas   2-Ver horario  3-Pedir aumento  4-Introducir quejas  5-Volver  6-Introducir tu horario:\n");
+		scanf("%i",&opcion);
+		cleanbuffer();
 
-	switch(opcion){
+		switch(opcion){
 
-	case 1:
-		 Sueldo_horas(em,e);
-		 break;
-	case 2:
-		 imprimir_horarios(em,e);
-		 break;
-	case 3: 
-		calculo_aumento = em[e].sueldo * em[e].meses;
-		if (calculo_aumento >= 36000){
-			printf("ENHORABUENA, te mereces un aumento de sueldo, a partir de ahora cobrarás las horas a 13€ en vez de a 10€\n");
+		case 1:
+			 Sueldo_horas(em,e);
+			 break;
+		case 2:
+			 imprimir_horarios(em,e);
+			 break;
+		case 3: 
+			calculo_aumento = em[e].sueldo * em[e].meses;
+			if (calculo_aumento >= 36000){
+				printf("ENHORABUENA, te mereces un aumento de sueldo, a partir de ahora cobrarás las horas a 13€ en vez de a 10€\n");
+			}
+			else{
+
+				printf("Lo siento por el momento NO mereces un aumento de sueldo, sigue trabajando duro\n");
+			} 
+			 break;
+		case 4: 
+			printf("Introduce a continuación la queja que quieres introducir:\n");
+			scanf("%[^\n]s",em[e].quejas);
+			break;
+		case 5: 
+			break;
+		case 6:
+				pregunta_horarios(em,e);
+			break;
+		default:
+			printf("Opción incorrecta");
+
 		}
-		else{
 
-			printf("Lo siento por el momento NO mereces un aumento de sueldo, sigue trabajando duro\n");
-		} 
-		 break;
-	case 4: 
-		printf("Introduce a continuación la queja que quieres introducir:\n");
-		scanf("%[^\n]s",em[e].quejas);
-		break;
-	case 5: 
-		break;
-	default:
-		printf("Opción incorrecta");
-
-	}
-
-}while(opcion != 5);
+	}while(opcion != 5);
 }
 
 
@@ -374,7 +387,7 @@ void eliminar_usuarios(Templeados em[])
 }
 
 
-//Este modulo sirve para agregar usuarios nuevos y rellenarlos en los espacios libres del struct 
+//Este modulo sirve para agregar usuarios nuevos y rellenarlos en los espacios libres del array
 void agregar_usuarios(Templeados em[])
 {
 	int agregar;
@@ -418,8 +431,7 @@ void imprimir_datos(Templeados em[])
 		printf("\n");	
 		for(int i=0;i<=8;i++)
 		{
-
-						printf("PUESTOS [%s] = %s\n",em[i].nombre_completo,em[i].puesto);
+			printf("PUESTOS [%s] = %s\n",em[i].nombre_completo,em[i].puesto);
 
 		}
 
@@ -427,8 +439,6 @@ void imprimir_datos(Templeados em[])
 		printf("\n");	
 		for(int i=0;i<=8;i++)
 		{
-
-			
 			printf("HORAS TRABAJADAS[%s] = %d\n",em[i].nombre_completo,em[i].horas_totales);
 
 		}		
@@ -437,8 +447,6 @@ void imprimir_datos(Templeados em[])
 		printf("\n");	
 		for(int i=0;i<=8;i++)
 		{
-
-			
 			printf("SUELDO[%s] = %i€\n",em[i].nombre_completo,em[i].sueldo);
 
 		}
@@ -447,8 +455,6 @@ void imprimir_datos(Templeados em[])
 		printf("\n");	
 		for(int i=0;i<=8;i++)
 		{
-
-			
 			printf("MESES TRABAJADOS[%s] = %i\n",em[i].nombre_completo,em[i].meses);
 
 		}
@@ -457,8 +463,6 @@ void imprimir_datos(Templeados em[])
 		printf("\n");	
 		for(int i=0;i<=8;i++)
 		{
-
-			
 			printf("QUEJAS DE[%s] = %s\n",em[i].nombre_completo,em[i].quejas);
 
 		}
@@ -466,8 +470,6 @@ void imprimir_datos(Templeados em[])
 		printf("\n");	
 		for(int i=0;i<=8;i++)
 		{
-
-			
 			printf("HORARIO DE[%s] = %i-%i\n",em[i].nombre_completo,em[i].entrada,em[i].salida);
 			printf("\n");
 		}
@@ -487,18 +489,21 @@ void modulo_director (Templeados em[],int e) {
 		printf("¿Que funcion quieres desempeñar?: \n\n");	
 		scanf("%i", &seleccionar_director);
 		cleanbuffer();
+		
 		switch (seleccionar_director) {
 
-			case 1: printf("A continuación podrás contratar a nuevos empleados\n"); 
+			case 1: 
+				printf("A continuación podrás contratar a nuevos empleados\n"); 
 				agregar_usuarios(em);
 			break;                          
 
-			case 2: printf("A continuación podrás despedir a tus empleados\n"); 
+			case 2: 
+				printf("A continuación podrás despedir a tus empleados\n"); 
 				eliminar_usuarios(em);
 			break;
 
-			case 3: printf("A continuación verás los datos de tus empresa\n");
-				
+			case 3: 
+				printf("A continuación verás los datos de tus empresa\n");
 				imprimir_datos(em);
 			break;
 
@@ -537,57 +542,44 @@ int main(){
 	inicializar_empleados(em);
 	inicializar_puestos(em);
 	inicizar_meses(em);
-
-
 	inicializar_codigo_Director(codigo_Director);
 	inicializar_codigo_empleado(codigo_empleado);
 	
 	printf("%s\n",codigo_Director);
 	printf("%s\n",codigo_empleado);
 
-do{
-	printf("INGRESE SU CODIGO: \n");
-	scanf("%s",inicio);
-  cleanbuffer();
+	do{
+		printf("INGRESE SU CODIGO: \n");
+		scanf("%s",inicio);
+	  cleanbuffer();
 
-	if(strcmp(inicio,codigo_empleado)==0)
-	{
-					
-		do{
-				
-				
-				emp=elegir_empleados(em);
-				pregunta_horarios(em,emp);
-				Sueldo_horas(em,emp);
-				imprimir_horarios(em,emp);
-				menu_empleados(em,emp);
-				
-				
-				
-				printf("Quieres entrar en otro usuario?[s/n]\n");
-				scanf("%c",&volver);
-			  cleanbuffer();
+		if(strcmp(inicio,codigo_empleado)==0)
+		{
+						
+			do{
+					emp=elegir_empleados(em);
+					menu_empleados(em,emp);
+					printf("Quieres entrar en otro usuario?[s/n]\n");
+					scanf("%c",&volver);
+				  cleanbuffer();
 
-		}while(volver != 'n');
+			}while(volver != 'n');
 
-	}else if(strcmp(inicio,codigo_Director)==0)
-	{
-		modulo_director(em,emp);
-		
+		}else if(strcmp(inicio,codigo_Director)==0)
+		{
+			modulo_director(em,emp);
+			
 
-	}else
-	{
-		printf("Codigo Incorrecto\n");
-	}	
+		}else
+		{
+			printf("Codigo Incorrecto\n");
+		}	
 
 
-	printf("Quieres hacerlo de nuevo? [s|n]");
-	scanf("%c",&reintentar);
+		printf("Quieres hacerlo de nuevo? [s|n]");
+		scanf("%c",&reintentar);
 
-	
-	
-	
-	
-}while(reintentar!='n');	
-return 0;
+			
+	}while(reintentar!='n');	
+	return 0;
 }
