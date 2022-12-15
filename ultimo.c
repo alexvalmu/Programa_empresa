@@ -57,6 +57,7 @@ void inicializar_empleados(Templeados em[])
  	sprintf(em[3].nombre_completo,"Carolina");
  	sprintf(em[4].nombre_completo,"Alex");
  	sprintf(em[5].nombre_completo,"Rosana");
+ 	sprintf(em[6].nombre_completo,"\n");
 }
 
 void inicializar_puestos(Templeados em[])
@@ -85,15 +86,25 @@ void inicizar_meses(Templeados em[])
 
 }
 
+void eliminar_carlos(Templeados em[])
+{
+
+	sprintf(em[2].nombre,"\t");
+	sprintf(em[2].puesto,"\t");
+	em[2].meses = 0;
+
+}
+
+
 void inicializar_entradas_salidas(Templeados em[])
 {
 	int i;
-	for (i=0;i<=5;i++)
+	for (i=0;i<=8;i++)
 	{
 		em[i].entrada = 0;	
 	}
 
-	for (i=0;i<=5;i++)
+	for (i=0;i<=8;i++)
 	{
 		em[i].salida = 0;	
 	}
@@ -104,7 +115,7 @@ void inicializar_entradas_salidas(Templeados em[])
 void inicializar_sueldos(Templeados em[])
 {
 	int i;
-	for (i=0;i<=5;i++)
+	for (i=0;i<=8;i++)
 	{
 		em[i].sueldo = 0;
 
@@ -115,7 +126,7 @@ void inicializar_sueldos(Templeados em[])
 void inicializar_horas_totales(Templeados em[])
 {
 	int i;
-	for(i=0;i<=5;i++)
+	for(i=0;i<=8;i++)
 	{
 
 		em[i].horas_totales = 0;
@@ -128,7 +139,7 @@ void inicializar_horas_totales(Templeados em[])
 void inicializar_quejas(Templeados em[])
 {
 	int i;
-	for(i=0;i<=5;i++)
+	for(i=0;i<=8;i++)
 	{
 		sprintf(em[i].quejas,"--");
 
@@ -137,16 +148,24 @@ void inicializar_quejas(Templeados em[])
 
 }
 
+void inicializar_nombres_anadidos(Templeados em[])
+{
+	int i;
+	for(i=6;i<=8;	i++)
+	{
+		sprintf(em[i].nombre_completo,"--");
+	}
+}
 
 
-
-int elegir_empleados()
+//aqui carlos
+int elegir_empleados(Templeados em[])
 {
 	int e,rep=0;
 	
 	do{
 		printf("Elige tu usuario de empleado:\n");
-		printf("1. Tomás\n2. María\n3. Carlos\n4. Carolina\n5. Alex\n6. Rosana\n");
+		printf("1. %s\n2. %s\n3. %s\n4. %s\n5. %s\n6. %s\n7. %s\n8. %s\n9. %s\n",em[0].nombre_completo,em[1].nombre_completo,em[2].nombre_completo,em[3].nombre_completo,em[4].nombre_completo,em[5].nombre_completo,em[6].nombre_completo,em[7].nombre_completo,em[8].nombre_completo);
 		scanf(" %i",&e);
 	if(e>6||e<1){
 		printf("Usuario incorrecto.\n");
@@ -215,7 +234,7 @@ void imprimir_horarios(Templeados em[],int e)
 
 
 
-
+//aqui carlos tambien
 void menu_empleados(Templeados em[],int e)
 {	
 
@@ -269,7 +288,7 @@ do{
 void inicializar_datos(Templeados em[])
 { 
 		printf("\n");	
-		for(int i=0;i<=5;i++)
+		for(int i=0;i<=8;i++)
 		{
 
 						printf("PUESTOS [%s] = %s\n",em[i].nombre_completo,em[i].puesto);
@@ -278,7 +297,7 @@ void inicializar_datos(Templeados em[])
 
 
 		printf("\n");	
-		for(int i=0;i<=5;i++)
+		for(int i=0;i<=8;i++)
 		{
 
 			
@@ -288,7 +307,7 @@ void inicializar_datos(Templeados em[])
 
 
 		printf("\n");	
-		for(int i=0;i<=5;i++)
+		for(int i=0;i<=8;i++)
 		{
 
 			
@@ -298,7 +317,7 @@ void inicializar_datos(Templeados em[])
 
 
 		printf("\n");	
-		for(int i=0;i<=5;i++)
+		for(int i=0;i<=8;i++)
 		{
 
 			
@@ -308,7 +327,7 @@ void inicializar_datos(Templeados em[])
 
 
 		printf("\n");	
-		for(int i=0;i<=5;i++)
+		for(int i=0;i<=8;i++)
 		{
 
 			
@@ -317,7 +336,7 @@ void inicializar_datos(Templeados em[])
 		}
 
 		printf("\n");	
-		for(int i=0;i<=5;i++)
+		for(int i=0;i<=8;i++)
 		{
 
 			
@@ -340,6 +359,8 @@ int main(){
 
 	Templeados em[8];
 
+
+	inicializar_nombres_anadidos(em);
 	inicializar_entradas_salidas(em);
 	inicializar_sueldos(em);
 	inicializar_horas_totales(em);
@@ -366,7 +387,7 @@ do{
 		do{
 				
 				
-				emp=elegir_empleados();
+				emp=elegir_empleados(em);
 				pregunta_horarios(em,emp);
 				Sueldo_horas(em,emp);
 				imprimir_horarios(em,emp);
