@@ -4,6 +4,16 @@
 
 
 
+
+/*- Una empresa quiere implementar un sistema de registro de empleados, con sus nombres, puestos y sus horas de entrada y salida. 
+Realiza un programa que permita realizar varias opciones, como ingresar un nuevo empleado (sólo alguno con un puesto determinado), 
+fichar una entrada o salida (uno mismo), ver el resumen de horarios por empleados. 
+Todo ello se podría gestionar mediante un código de empleado, dependiendo de la acción a realizar.
+
+
+/*NOMBRES DE LOS COMPONENTES DEL PORYECTO: Alex Valdelvira Muñoz, Tomas Woodward Marín, Carlos Hurtado Baeza. */
+
+
 void cleanbuffer()
 {
   while(getchar() !='\n'){;}
@@ -75,6 +85,59 @@ void inicizar_meses(Templeados em[])
 
 }
 
+void inicializar_entradas_salidas(Templeados em[])
+{
+	int i;
+	for (i=0;i<=5;i++)
+	{
+		em[i].entrada = 0;	
+	}
+
+	for (i=0;i<=5;i++)
+	{
+		em[i].salida = 0;	
+	}
+	
+}
+
+
+void inicializar_sueldos(Templeados em[])
+{
+	int i;
+	for (i=0;i<=5;i++)
+	{
+		em[i].sueldo = 0;
+
+	}
+	
+}
+
+void inicializar_horas_totales(Templeados em[])
+{
+	int i;
+	for(i=0;i<=5;i++)
+	{
+
+		em[i].horas_totales = 0;
+
+
+
+	}
+}
+
+void inicializar_quejas(Templeados em[])
+{
+	int i;
+	for(i=0;i<=5;i++)
+	{
+		sprintf(em[i].quejas,"--");
+
+	}
+
+
+}
+
+
 
 
 int elegir_empleados()
@@ -100,7 +163,7 @@ int elegir_empleados()
 }
 
 
-void inicializar_pregunta_horarios(Templeados em[],int e)
+void pregunta_horarios(Templeados em[],int e)
 {	
 	
 	printf("Introduce tu hora de entrada y tu hora de salida:\n");
@@ -122,7 +185,7 @@ int Sueldo_horas(Templeados em[],int e)
 	
 }
 
-void inicializar_horarios(Templeados em[],int e)
+void imprimir_horarios(Templeados em[],int e)
 {	
 	int i;
 	
@@ -153,7 +216,7 @@ void inicializar_horarios(Templeados em[],int e)
 
 
 
-void inicializar_menu_empleados(Templeados em[],int e)
+void menu_empleados(Templeados em[],int e)
 {	
 
 	int opcion,i; 
@@ -172,7 +235,7 @@ do{
 		 Sueldo_horas(em,e);
 		 break;
 	case 2:
-		inicializar_horarios(em,e);
+		 imprimir_horarios(em,e);
 		 break;
 	case 3: 
 		calculo_aumento = em[e].sueldo * em[e].meses;
@@ -277,9 +340,15 @@ int main(){
 
 	Templeados em[8];
 
+	inicializar_entradas_salidas(em);
+	inicializar_sueldos(em);
+	inicializar_horas_totales(em);
+	inicializar_quejas(em);
 	inicializar_empleados(em);
 	inicializar_puestos(em);
-	
+	inicizar_meses(em);
+
+
 	inicializar_codigo_Director(codigo_Director);
 	inicializar_codigo_empleado(codigo_empleado);
 	
@@ -296,12 +365,12 @@ do{
 					
 		do{
 				
-				inicizar_meses(em);
+				
 				emp=elegir_empleados();
-				inicializar_pregunta_horarios(em,emp);
+				pregunta_horarios(em,emp);
 				Sueldo_horas(em,emp);
-				inicializar_horarios(em,emp);
-				inicializar_menu_empleados(em,emp);
+				imprimir_horarios(em,emp);
+				menu_empleados(em,emp);
 				
 				
 				
