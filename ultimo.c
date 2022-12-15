@@ -3,7 +3,6 @@
 #include <stdlib.h>
 #include <math.h>
 
-
 #define RESET_COLOR    "\x1b[0m"
 #define NEGRO_T        "\x1b[30m"
 #define NEGRO_F        "\x1b[40m"
@@ -12,9 +11,9 @@
 #define VERDE_T        "\x1b[32m"
 #define VERDE_F        "\x1b[42m"
 #define AMARILLO_T "\x1b[33m"
-#define    AMARILLO_F  "\x1b[43m"
+#define AMARILLO_F  "\x1b[43m"
 #define AZUL_T     "\x1b[34m"
-#define    AZUL_F      "\x1b[44m"
+#define AZUL_F      "\x1b[44m"
 #define MAGENTA_T  "\x1b[35m"
 #define MAGENTA_F  "\x1b[45m"
 #define CYAN_T     "\x1b[36m"
@@ -22,15 +21,13 @@
 #define BLANCO_T   "\x1b[37m"
 #define BLANCO_F   "\x1b[47m"
 
-
-
 /*- Una empresa quiere implementar un sistema de registro de empleados, con sus nombres, puestos y sus horas de entrada y salida. 
 Realiza un programa que permita realizar varias opciones, como ingresar un nuevo empleado (sólo alguno con un puesto determinado), 
 fichar una entrada o salida (uno mismo), ver el resumen de horarios por empleados. 
 Todo ello se podría gestionar mediante un código de empleado, dependiendo de la acción a realizar.
 
 
-/*NOMBRES DE LOS COMPONENTES DEL PORYECTO: Alex Valdelvira Muñoz, Tomas Woodward Marín, Carlos Hurtado Baeza. */
+NOMBRES DE LOS COMPONENTES DEL PORYECTO: Alex Valdelvira Muñoz, Tomas Woodward Marín, Carlos Hurtado Baeza. */
 
 
 void cleanbuffer()
@@ -75,12 +72,12 @@ void inicializar_codigo_Director(char director[])
 //Este módulo sirve para inicializar los nombres de los trabajadores que hay en la empresa hasta la fecha
 void inicializar_empleados(Templeados em[])
 {
-	sprintf(em[0].nombre_completo,"Tomás");
-	sprintf(em[1].nombre_completo,"María");
- 	sprintf(em[2].nombre_completo,"Carlos");
- 	sprintf(em[3].nombre_completo,"Carolina");
- 	sprintf(em[4].nombre_completo,"Alex");
- 	sprintf(em[5].nombre_completo,"Rosana");
+	sprintf(em[0].nombre_completo,AMARILLO_T "Tomás"RESET_COLOR);
+	sprintf(em[1].nombre_completo,AMARILLO_T "María"RESET_COLOR);
+ 	sprintf(em[2].nombre_completo,AMARILLO_T "Carlos"RESET_COLOR);
+ 	sprintf(em[3].nombre_completo,AMARILLO_T "Carolina"RESET_COLOR);
+ 	sprintf(em[4].nombre_completo,AMARILLO_T "Alex"RESET_COLOR);
+ 	sprintf(em[5].nombre_completo,AMARILLO_T "Rosana"RESET_COLOR);
 }
 
 
@@ -175,7 +172,7 @@ void inicializar_nombres_anadidos(Templeados em[])
 	int i;
 	for(i=6;i<=9;	i++)
 	{
-		sprintf(em[i].nombre_completo,"--");
+		sprintf(em[i].nombre_completo,AMARILLO_F "--" RESET_COLOR);
 	}
 }
 
@@ -186,7 +183,7 @@ int elegir_empleados(Templeados em[])
 	int e,rep=0;
 	
 	do{
-		printf("Elige tu usuario de empleado:\n");
+		printf(AZUL_T"Elige tu usuario de empleado:\n"RESET_COLOR);
 		printf("1. %s\n2. %s\n3. %s\n4. %s\n5. %s\n6. %s\n7. %s\n8. %s\n9. %s\n",em[0].nombre_completo,em[1].nombre_completo,em[2].nombre_completo,em[3].nombre_completo,em[4].nombre_completo,em[5].nombre_completo,em[6].nombre_completo,em[7].nombre_completo,em[8].nombre_completo);
 		scanf(" %i",&e);
 		cleanbuffer();
@@ -252,10 +249,10 @@ void imprimir_horarios(Templeados em[],int e)
 		if(em[e].horas_totales >= 8 || em[e].horas_totales==0){
 
 		
-		printf("\t   Lu\t   Ma\t   Mi\t   Ju\t   Vi\t   Sa\t   Do\n");
+		printf(VERDE_T"\t   Lu\t   Ma\t   Mi\t   Ju\t   Vi\t   Sa\t   Do\n" RESET_COLOR);
 		for(i=0;i<=4;i++)
 			{
-				printf("Semana%i\t   %i-%i\t   %i-%i\t   %i-%i\t   %i-%i\t    %i-%i   //\t   //\t\n",i,em[e].entrada,em[e].salida,em[e].entrada,em[e].salida,em[e].entrada,em[e].salida,em[e].entrada,em[e].salida,em[e].entrada,em[e].salida);
+				printf(ROJO_T"Semana%i\t"RESET_COLOR   "  %i-%i\t   %i-%i\t   %i-%i\t   %i-%i\t    %i-%i   //\t   //\t\n",i,em[e].entrada,em[e].salida,em[e].entrada,em[e].salida,em[e].entrada,em[e].salida,em[e].entrada,em[e].salida,em[e].entrada,em[e].salida);
 
 			}
   	}
@@ -284,7 +281,7 @@ void menu_empleados(Templeados em[],int e)
 	
 	
 	do{
-		printf("Introduce la operación que quieres hacer: 1-Ver sueldo actual y horas trabajadas   2-Ver horario  3-Pedir aumento  4-Introducir quejas  5-Volver  6-Introducir tu horario:\n");
+		printf("Introduce la operación que quieres hacer:  " VERDE_T "  1-Ver sueldo actual y horas trabajadas  "  MAGENTA_T "2-Ver horario  " CYAN_T "3-Pedir aumento  " BLANCO_T  "4-Introducir quejas  " ROJO_T "5-Volver  " VERDE_T "6-Introducir tu horario:  \n"RESET_COLOR);
 		scanf("%i",&opcion);
 		cleanbuffer();
 
@@ -568,7 +565,8 @@ int main(){
 	printf("%s\n",codigo_empleado);
 
 	do{
-		printf("INGRESE SU CODIGO: \n");
+
+		printf(BLANCO_T"INGRESE SU CODIGO: \n"RESET_COLOR );
 		scanf("%s",inicio);
 	  cleanbuffer();
 
