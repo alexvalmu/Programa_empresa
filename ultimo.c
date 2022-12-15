@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <math.h>
 
+
+// Estos define sirven para darle color y formato a nuestro programa
 #define RESET_COLOR    "\x1b[0m"
 #define NEGRO_T        "\x1b[30m"
 #define NEGRO_F        "\x1b[40m"
@@ -441,7 +443,7 @@ void agregar_usuarios(Templeados em[])
 }
 
 
-//Este modulo sirve para que el director pueda imprimir el resumen de todos los datos de los empleados de u
+//Este modulo sirve para que el director pueda imprimir el resumen de todos los datos de los empleados 
 void imprimir_datos(Templeados em[])
 { 
 		printf("\n");	
@@ -492,7 +494,7 @@ void imprimir_datos(Templeados em[])
 
 }
 
-
+//Este modulo sirve para introducir el menu de director con sus opciones en el programa
 void modulo_director (Templeados em[],int e) {
 
 	int seleccionar_director;	
@@ -593,7 +595,7 @@ int main(){
 		}	
 
 
-		printf("Quieres hacerlo de nuevo? [s|n]");
+		printf("Quieres hacerlo de nuevo? [s|n]"); // esto sirve para volver al menu de introducir contraseña
 		scanf("%c",&reintentar);
 
 			
