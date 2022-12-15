@@ -21,6 +21,8 @@ void cleanbuffer()
 }
 
 
+
+// este struct sirve para almacenar los datos relacionados con los empleados
 typedef struct 
 {	
 	char nombre_completo[35];
@@ -37,18 +39,22 @@ typedef struct
 
 
 
-
+//Este módulo sirve para inicializar la contraseña para acceder al menú del empleado
 void inicializar_codigo_empleado(char empleado[])
 {
 	 	sprintf(empleado,"Empleado01");
 }
 
+
+//Este módulo sirve para inicializar la contraseña para acceder al menú del director
 void inicializar_codigo_Director(char director[])
 {
 	
  		sprintf(director,"Director01");
 }
 
+
+//Este módulo sirve para inicializar los nombres de los trabajadores que hay en la empresa hasta la fecha
 void inicializar_empleados(Templeados em[])
 {
 	sprintf(em[0].nombre_completo,"Tomás");
@@ -57,9 +63,10 @@ void inicializar_empleados(Templeados em[])
  	sprintf(em[3].nombre_completo,"Carolina");
  	sprintf(em[4].nombre_completo,"Alex");
  	sprintf(em[5].nombre_completo,"Rosana");
- 	sprintf(em[6].nombre_completo,"\n");
 }
 
+
+//Este módulo sirve para inicializar los puestos de los trabajadores que hay en la empresa hasta la fecha
 void inicializar_puestos(Templeados em[])
 {
 	sprintf(em[0].puesto,"Ingeniero");
@@ -72,6 +79,8 @@ void inicializar_puestos(Templeados em[])
 
 }
 
+
+//Este módulo sirve para inicializar los meses que llevan los trabajadores que hay en la empresa hasta la fecha
 void inicizar_meses(Templeados em[])
 {
 
@@ -80,22 +89,14 @@ void inicizar_meses(Templeados em[])
 	  em[2].meses= 6;
 	  em[3].meses= 20;
 	  em[4].meses= 3;
-	  em[5].meses= 16;
+	  em[5].meses= 1;
+		em[6].meses= 1;
+		em[7].meses= 1;
+		em[8].meses= 1;
 	
-
-
 }
 
-void eliminar_carlos(Templeados em[])
-{
-
-	sprintf(em[2].nombre,"\t");
-	sprintf(em[2].puesto,"\t");
-	em[2].meses = 0;
-
-}
-
-
+//Este módulo sirve para inicializar en 0 todos los valores de fichar las entradas y las salidas cuando no se han introducido datos
 void inicializar_entradas_salidas(Templeados em[])
 {
 	int i;
@@ -111,7 +112,7 @@ void inicializar_entradas_salidas(Templeados em[])
 	
 }
 
-
+//Este módulo sirve para inicializar en 0 todos los valores de los sueldo cuando no se han introducido datos
 void inicializar_sueldos(Templeados em[])
 {
 	int i;
@@ -123,6 +124,8 @@ void inicializar_sueldos(Templeados em[])
 	
 }
 
+
+//Este módulo sirve para inicializar en 0 todos los valores las horas totales trabajadas en un dia cuando no se han introducido datos
 void inicializar_horas_totales(Templeados em[])
 {
 	int i;
@@ -136,6 +139,8 @@ void inicializar_horas_totales(Templeados em[])
 	}
 }
 
+
+//Este módulo sirve para inicializar en -- todos los valores las quejas cuando no se han introducido datos
 void inicializar_quejas(Templeados em[])
 {
 	int i;
@@ -148,17 +153,18 @@ void inicializar_quejas(Templeados em[])
 
 }
 
+//Este módulo sirve para inicializar en -- todos los valores de los nombres que se pueden añadir cuando no se han introducido datos
 void inicializar_nombres_anadidos(Templeados em[])
 {
 	int i;
-	for(i=6;i<=8;	i++)
+	for(i=6;i<=9;	i++)
 	{
 		sprintf(em[i].nombre_completo,"--");
 	}
 }
 
 
-//aqui carlos
+//Este módulo sirve para recoger la opcion recogida por teclado y almacenarla en la variable e la cual le restará 1 para que esta pueda ser pasada a los demas módulos para referenciar que arrays quieres rellenar depende el usuario seleccionado
 int elegir_empleados(Templeados em[])
 {
 	int e,rep=0;
@@ -167,8 +173,9 @@ int elegir_empleados(Templeados em[])
 		printf("Elige tu usuario de empleado:\n");
 		printf("1. %s\n2. %s\n3. %s\n4. %s\n5. %s\n6. %s\n7. %s\n8. %s\n9. %s\n",em[0].nombre_completo,em[1].nombre_completo,em[2].nombre_completo,em[3].nombre_completo,em[4].nombre_completo,em[5].nombre_completo,em[6].nombre_completo,em[7].nombre_completo,em[8].nombre_completo);
 		scanf(" %i",&e);
-	if(e>6||e<1){
-		printf("Usuario incorrecto.\n");
+		cleanbuffer();
+	if(e>9||e<1){
+		printf("Usuario incorrecto.\n\n");
 		rep=1;
 	}
 	else{
@@ -182,6 +189,8 @@ int elegir_empleados(Templeados em[])
 }
 
 
+
+//Este módulo sirve para recoger los datos de fichar hora de entrada y salida de cada usuario
 void pregunta_horarios(Templeados em[],int e)
 {	
 	
@@ -192,7 +201,7 @@ void pregunta_horarios(Templeados em[],int e)
 
 }
 
-
+//Este módulo sirve para calcular las horas trabajadas por dia yel sueldo de cada persona y almacenarlo estos datos en las arrays horas_totales y sueldo 
 int Sueldo_horas(Templeados em[],int e)
 {	
 		em[e].horas_totales = em[e].salida - em[e].entrada;
@@ -204,6 +213,8 @@ int Sueldo_horas(Templeados em[],int e)
 	
 }
 
+
+//Este módulo sirve para imprimir el formato de horarios dependiendo de la cantidad de horas trabajadas por dia usando los valores de cada trabajador de entrada y salida
 void imprimir_horarios(Templeados em[],int e)
 {	
 	int i;
@@ -234,7 +245,7 @@ void imprimir_horarios(Templeados em[],int e)
 
 
 
-//aqui carlos tambien
+//Este modulo sirve para llamar a los módulos que estan introducidos dentros del menú empleados
 void menu_empleados(Templeados em[],int e)
 {	
 
@@ -272,6 +283,8 @@ do{
 		break;
 	case 5: 
 		break;
+	default:
+		printf("Opción incorrecta");
 
 	}
 
@@ -280,12 +293,127 @@ do{
 
 
 
+//Este módulo sirve para eliminar a los usuarios que ya estaban en la empresa desde hace meses
+void eliminar_usuarios(Templeados em[])
+{
+	int elim;
+	printf("Que usuario quieres eliminar?\n");
+	printf("1. %s\n2. %s\n3. %s\n4. %s\n5. %s\n6. %s\n",em[0].nombre_completo,em[1].nombre_completo,em[2].nombre_completo,em[3].nombre_completo,em[4].nombre_completo,em[5].nombre_completo);
+	scanf("%i",&elim);
+	cleanbuffer();
+	switch(elim)
+	{
+	case 1:
+		sprintf(em[0].nombre_completo,"--");
+		sprintf(em[0].puesto,"--");
+		sprintf(em[0].quejas,"--");
+		em[0].horas_totales = 0;
+		em[0].sueldo = 0;
+		em[0].meses = 0;
+		em[0].entrada = 0;
+		em[0].salida = 0;
+		break;
+
+	case 2:
+		sprintf(em[1].nombre_completo,"--");
+		sprintf(em[1].puesto,"--");
+		sprintf(em[1].quejas,"--");
+		em[1].horas_totales = 0;
+		em[1].sueldo = 0;
+		em[1].meses = 0;
+		em[1].entrada = 0;
+		em[1].salida = 0;
+		break;
+
+	case 3:
+		sprintf(em[2].nombre_completo,"--");
+		sprintf(em[2].puesto,"--");
+		sprintf(em[2].quejas,"--");
+		em[2].horas_totales = 0;
+		em[2].sueldo = 0;
+		em[2].meses = 0;
+		em[2].entrada = 0;
+		em[2].salida = 0;
+		break;
+
+	case 4:
+		sprintf(em[3].nombre_completo,"--");
+		sprintf(em[3].puesto,"--");
+		sprintf(em[3].quejas,"--");
+		em[3].horas_totales = 0;
+		em[3].sueldo = 0;
+		em[3].meses = 0;
+		em[3].entrada = 0;
+		em[3].salida = 0;
+		break;
+
+	case 5:
+		sprintf(em[4].nombre_completo,"--");
+		sprintf(em[4].puesto,"--");
+		sprintf(em[4].quejas,"--");
+		em[4].horas_totales = 0;
+		em[4].sueldo = 0;
+		em[4].meses = 0;
+		em[4].entrada = 0;
+		em[4].salida = 0;
+		break;	
+
+	case 6:
+		sprintf(em[5].nombre_completo,"--");
+		sprintf(em[5].puesto,"--");
+		sprintf(em[5].quejas,"--");
+		em[5].horas_totales = 0;
+		em[5].sueldo = 0;
+		em[5].meses = 0;
+		em[5].entrada = 0;
+		em[5].salida = 0;
+		break;
+	default:
+			printf("Opción incorrecta");
+	}
+}
+
+
+//Este modulo sirve para agregar usuarios nuevos y rellenarlos en los espacios libres del struct 
+void agregar_usuarios(Templeados em[])
+{
+	int agregar;
+	printf("Que usuario quieres agregar?\n");
+	printf("1.Natalia \n2. Ana \n3. Jose \n");
+	scanf("%i",&agregar);
+	cleanbuffer();
+	switch(agregar)
+	{
+	case 1:
+		sprintf(em[6].nombre_completo,"Natalia");
+		sprintf(em[6].puesto,"Administrativo");
+		em[6].meses = 1;
+		break;
+
+	case 2:
+		sprintf(em[7].nombre_completo,"Ana");
+		sprintf(em[7].puesto,"Administrativo");
+		em[7].meses = 1;
+		break;
+
+	case 3:
+		sprintf(em[8].nombre_completo,"Jose");
+		sprintf(em[8].puesto,"Marketing");
+		em[8].meses = 1;
+	break;
+
+	default:
+		printf("Opción incorrecta");
+}
 
 
 
 
+}
 
-void inicializar_datos(Templeados em[])
+
+//Este modulo sirve para que el director pueda imprimir el resumen de todos los datos de los empleados de u
+void imprimir_datos(Templeados em[])
 { 
 		printf("\n");	
 		for(int i=0;i<=8;i++)
@@ -341,11 +469,52 @@ void inicializar_datos(Templeados em[])
 
 			
 			printf("HORARIO DE[%s] = %i-%i\n",em[i].nombre_completo,em[i].entrada,em[i].salida);
-
+			printf("\n");
 		}
 
 }
 
+
+void modulo_director (Templeados em[],int e) {
+
+	int seleccionar_director;	
+	char respuesta;
+
+	do {	
+
+		printf("Estas son las funciones disponibles para tu cargo en la empresa:\n");
+		printf(" 1 - Contratar trabajadores\n 2 - Despedir trabajadores\n 3 - Ver datos de la empresa\n");
+		printf("¿Que funcion quieres desempeñar?: \n\n");	
+		scanf("%i", &seleccionar_director);
+		cleanbuffer();
+		switch (seleccionar_director) {
+
+			case 1: printf("A continuación podrás contratar a nuevos empleados\n"); 
+				agregar_usuarios(em);
+			break;                          
+
+			case 2: printf("A continuación podrás despedir a tus empleados\n"); 
+				eliminar_usuarios(em);
+			break;
+
+			case 3: printf("A continuación verás los datos de tus empresa\n");
+				
+				imprimir_datos(em);
+			break;
+
+		default:
+			printf("Opción incorrecta");
+		
+
+		}
+
+		printf("¿Quieres cerrar sesion como jefe? s/n: "); 
+		scanf("%c", &respuesta);
+		cleanbuffer();
+
+	} while (respuesta == 'n' || respuesta == 'N');
+
+}
 
 
 
@@ -357,7 +526,7 @@ int main(){
 	char volver,reintentar;
 	int emp;
 
-	Templeados em[8];
+	Templeados em[9];
 
 
 	inicializar_nombres_anadidos(em);
@@ -403,8 +572,8 @@ do{
 
 	}else if(strcmp(inicio,codigo_Director)==0)
 	{
-
-		inicializar_datos(em);
+		modulo_director(em,emp);
+		
 
 	}else
 	{
