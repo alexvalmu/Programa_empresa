@@ -3,8 +3,6 @@
 #include <stdlib.h>
 #include <math.h>
 
-
-// Estos define sirven para darle color y formato a nuestro programa
 #define RESET_COLOR    "\x1b[0m"
 #define NEGRO_T        "\x1b[30m"
 #define NEGRO_F        "\x1b[40m"
@@ -50,7 +48,7 @@ typedef struct
 	int horas_totales;
 	int sueldo;
 	int meses;
-	char puesto[15];
+	char puesto[17];
 	
 
 }Templeados;
@@ -409,26 +407,26 @@ void eliminar_usuarios(Templeados em[])
 void agregar_usuarios(Templeados em[])
 {
 	int agregar;
-	printf("Que usuario quieres agregar?\n");
-	printf("1.Natalia \n2. Ana \n3. Jose \n");
+	printf(AZUL_T"Que usuario quieres agregar?\n"RESET_COLOR);
+	printf(AMARILLO_T"1.Natalia \n2. Ana \n3. Jose \n"RESET_COLOR);
 	scanf("%i",&agregar);
 	cleanbuffer();
 	switch(agregar)
 	{
 	case 1:
-		sprintf(em[6].nombre_completo,"Natalia");
+		sprintf(em[6].nombre_completo,AMARILLO_T"Natalia"RESET_COLOR);
 		sprintf(em[6].puesto,"Administrativo");
 		em[6].meses = 1;
 		break;
 
 	case 2:
-		sprintf(em[7].nombre_completo,"Ana");
-		sprintf(em[7].puesto,"Administrativo");
+		sprintf(em[7].nombre_completo,AMARILLO_T"Ana"RESET_COLOR);
+		sprintf(em[7].puesto,"Administrativo"RESET_COLOR);
 		em[7].meses = 1;
 		break;
 
 	case 3:
-		sprintf(em[8].nombre_completo,"Jose");
+		sprintf(em[8].nombre_completo,AMARILLO_T"Jose"RESET_COLOR);
 		sprintf(em[8].puesto,"Marketing");
 		em[8].meses = 1;
 	break;
@@ -443,7 +441,7 @@ void agregar_usuarios(Templeados em[])
 }
 
 
-//Este modulo sirve para que el director pueda imprimir el resumen de todos los datos de los empleados 
+//Este modulo sirve para que el director pueda imprimir el resumen de todos los datos de los empleados de u
 void imprimir_datos(Templeados em[])
 { 
 		printf("\n");	
@@ -494,7 +492,7 @@ void imprimir_datos(Templeados em[])
 
 }
 
-//Este modulo sirve para introducir el menu de director con sus opciones en el programa
+
 void modulo_director (Templeados em[],int e) {
 
 	int seleccionar_director;	
@@ -502,8 +500,8 @@ void modulo_director (Templeados em[],int e) {
 
 	do {	
 
-		printf("Estas son las funciones disponibles para tu cargo en la empresa:\n");
-		printf(" 1 - Contratar trabajadores\n 2 - Despedir trabajadores\n 3 - Ver datos de la empresa\n");
+		printf(AZUL_T"Estas son las funciones disponibles para tu cargo en la empresa:\n"RESET_COLOR);
+		printf(AMARILLO_T" 1 - Contratar trabajadores\n 2 - Despedir trabajadores\n 3 - Ver datos de la empresa\n"RESET_COLOR);
 		printf("¿Que funcion quieres desempeñar?: \n\n");	
 		scanf("%i", &seleccionar_director);
 		cleanbuffer();
@@ -511,17 +509,17 @@ void modulo_director (Templeados em[],int e) {
 		switch (seleccionar_director) {
 
 			case 1: 
-				printf("A continuación podrás contratar a nuevos empleados\n"); 
+				printf(AZUL_T"A continuación podrás contratar a nuevos empleados\n"RESET_COLOR); 
 				agregar_usuarios(em);
 			break;                          
 
 			case 2: 
-				printf("A continuación podrás despedir a tus empleados\n"); 
+				printf(AZUL_T"A continuación podrás despedir a tus empleados\n"RESET_COLOR); 
 				eliminar_usuarios(em);
 			break;
 
 			case 3: 
-				printf("A continuación verás los datos de tus empresa\n");
+				printf(AZUL_T"A continuación verás los datos de tus empresa\n"RESET_COLOR);
 				imprimir_datos(em);
 			break;
 
@@ -568,7 +566,7 @@ int main(){
 
 	do{
 
-		printf(BLANCO_T"INGRESE SU CODIGO: \n"RESET_COLOR );
+		printf(AZUL_T"INGRESE SU CODIGO: \n"RESET_COLOR );
 		scanf("%s",inicio);
 	  cleanbuffer();
 
@@ -578,7 +576,7 @@ int main(){
 			do{
 					emp=elegir_empleados(em);
 					menu_empleados(em,emp);
-					printf("Quieres entrar en otro usuario?[s/n]\n");
+					printf(AZUL_T"Quieres entrar en otro usuario?[s/n]\n"RESET_COLOR);
 					scanf("%c",&volver);
 				  cleanbuffer();
 
@@ -591,11 +589,11 @@ int main(){
 
 		}else
 		{
-			printf("Codigo Incorrecto\n");
+			printf(ROJO_T"Codigo Incorrecto\n"RESET_COLOR);
 		}	
 
 
-		printf("Quieres hacerlo de nuevo? [s|n]"); // esto sirve para volver al menu de introducir contraseña
+		printf("Quieres comenzar de nuevo? [s|n]");
 		scanf("%c",&reintentar);
 
 			
