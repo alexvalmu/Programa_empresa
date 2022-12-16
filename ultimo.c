@@ -25,8 +25,6 @@
 Realiza un programa que permita realizar varias opciones, como ingresar un nuevo empleado (sólo alguno con un puesto determinado), 
 fichar una entrada o salida (uno mismo), ver el resumen de horarios por empleados. 
 Todo ello se podría gestionar mediante un código de empleado, dependiendo de la acción a realizar.
-
-
 NOMBRES DE LOS COMPONENTES DEL PORYECTO: Alex Valdelvira Muñoz, Tomas Woodward Marín, Carlos Hurtado Baeza. */
 
 
@@ -282,7 +280,7 @@ void menu_empleados(Templeados em[],int e)
 	
 	
 	do{
-		printf("Introduce la operación que quieres hacer:  " VERDE_T "  1-Ver sueldo actual y horas trabajadas  "  MAGENTA_T "2-Ver horario  " CYAN_T "3-Pedir aumento  " BLANCO_T  "4-Introducir quejas  " ROJO_T "5-Volver  " VERDE_T "6-Introducir tu horario:  \n"RESET_COLOR);
+		printf("Introduce la operación que quieres hacer:  \n" VERDE_T "  1-Introducir tu horario:   "  MAGENTA_T "2-Ver horario  " CYAN_T "3-Pedir aumento  " BLANCO_T  "4-Introducir quejas  " ROJO_T "5 Ver sueldo y horas trabajadas por dia  " VERDE_T "6-Volver  \n"RESET_COLOR);
 		scanf("%i",&opcion);
 		cleanbuffer();
 
@@ -328,7 +326,7 @@ void eliminar_usuarios(Templeados em[])
 {
 	int elim;
 	printf("Que usuario quieres eliminar?\n");
-	printf("1. %s\n2. %s\n3. %s\n4. %s\n5. %s\n6. %s\n",em[0].nombre_completo,em[1].nombre_completo,em[2].nombre_completo,em[3].nombre_completo,em[4].nombre_completo,em[5].nombre_completo);
+	printf("1. %s\n2. %s\n3. %s\n4. %s\n5. %s\n6. %s\n7. %s\n8. %s\n9. %s\n",em[0].nombre_completo,em[1].nombre_completo,em[2].nombre_completo,em[3].nombre_completo,em[4].nombre_completo,em[5].nombre_completo,em[6].nombre_completo,em[7].nombre_completo,em[8].nombre_completo);
 	scanf("%i",&elim);
 	cleanbuffer();
 	switch(elim)
@@ -398,8 +396,31 @@ void eliminar_usuarios(Templeados em[])
 		em[5].entrada = 0;
 		em[5].salida = 0;
 		break;
+		
+  case 7:
+		sprintf(em[6].nombre_completo,"--");
+		sprintf(em[6].puesto,"--");
+		sprintf(em[6].quejas,"--");
+		em[6].horas_totales = 0;
+		em[6].sueldo = 0;
+		em[6].meses = 0;
+		em[6].entrada = 0;
+		em[6].salida = 0;
+		break;
+	
+	case 8:
+		sprintf(em[8].nombre_completo,"--");
+		sprintf(em[8].puesto,"--");
+		sprintf(em[8].quejas,"--");
+		em[8].horas_totales = 0;
+		em[8].sueldo = 0;
+		em[8].meses = 0;
+		em[8].entrada = 0;
+		em[8].salida = 0;
+		break;
 	default:
 			printf("Opción incorrecta");
+	
 	}
 }
 
