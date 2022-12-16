@@ -287,7 +287,7 @@ void menu_empleados(Templeados em[],int e)
 		switch(opcion){
 
 		case 1:
-			 Sueldo_horas(em,e);
+			 pregunta_horarios(em,e);
 			 break;
 		case 2:
 			 imprimir_horarios(em,e);
@@ -306,10 +306,10 @@ void menu_empleados(Templeados em[],int e)
 			printf("Introduce a continuación la queja que quieres introducir:\n");
 			scanf("%[^\n]s",em[e].quejas);
 			break;
-		case 5: 
+		case 5:
+			Sueldo_horas(em,e); 
 			break;
 		case 6:
-				pregunta_horarios(em,e);
 			break;
 		default:
 			printf("Opción incorrecta");
@@ -570,13 +570,19 @@ int main(){
 	int emp;
 
 	Templeados em[9];
-printf("     /\\      | |         (_)     (_)   | |              | |                                                   					\n");
-printf("    /  \\   __| |_ __ ___  _ _ __  _ ___| |_ _ __ __ _   | |_ _   _    ___ _ __ ___  _ __  _ __ ___  ___  __ _ 					\n");
-printf("   / /\\ \\ / _` | '_ ` _ \\| | '_ \\| / __| __| '__/ _` |  | __| | | |  / _ \\ '_ ` _ \\| '_ \\| '__/ _ \\/ __|/ _` |	\n");
-printf("  / ____ \\ (_| | | | | | | | | | | \\__ \\ |_| | | (_| |  | |_| |_| | |  __/ | | | | | |_) | | |  __/\\__ \\ (_| |		  \n");
-printf(" /_/    \\_\\__,_|_| |_| |_|_|_| |_|_|___/\\__|_|  \\__,_|   \\__|\\__,_|  \\___|_| |_| |_| .__/|_|  \\___||___/\\__,_|	\n");
-printf("                                                                                   | |                        					\n");
-printf("                                                                                   |_|                        		      \n");
+
+
+
+	printf("\n\n");
+
+
+	printf("     /\\      | |         (_)     (_)   | |              | |                                                   					\n");
+	printf("    /  \\   __| |_ __ ___  _ _ __  _ ___| |_ _ __ __ _   | |_ _   _    ___ _ __ ___  _ __  _ __ ___  ___  __ _ 					\n");
+	printf("   / /\\ \\ / _` | '_ ` _ \\| | '_ \\| / __| __| '__/ _` |  | __| | | |  / _ \\ '_ ` _ \\| '_ \\| '__/ _ \\/ __|/ _` |	\n");
+	printf("  / ____ \\ (_| | | | | | | | | | | \\__ \\ |_| | | (_| |  | |_| |_| | |  __/ | | | | | |_) | | |  __/\\__ \\ (_| |		  \n");
+	printf(" /_/    \\_\\__,_|_| |_| |_|_|_| |_|_|___/\\__|_|  \\__,_|   \\__|\\__,_|  \\___|_| |_| |_| .__/|_|  \\___||___/\\__,_|	\n");
+	printf("                                                                                   | |                        					\n");
+	printf("                                                                                   |_|                        		      \n");
 
 	inicializar_nombres_anadidos(em);
 	inicializar_entradas_salidas(em);
@@ -602,6 +608,17 @@ printf("                                                                        
 		{
 						
 			do{
+
+					printf("  __  __              __                            _                _           						\n");
+					printf(" |  \\/  |            /_/                           | |              | |          					\n");
+					printf(" | \\  / | ___ _ __  _   _       ___ _ __ ___  _ __ | | ___  __ _  __| | ___  ___ 					\n");
+					printf(" | |\\/| |/ _ \\ '_ \\| | | |     / _ \\ '_ ` _ \\| '_ \\| |/ _ \\/ _` |/ _` |/ _ \\/ __|		\n");
+					printf(" | |  | |  __/ | | | |_| |    |  __/ | | | | | |_) | |  __/ (_| | (_| | (_) \\__ \\					\n");
+					printf(" |_|  |_|\\___|_| |_|\\__,_|     \\___|_| |_| |_| .__/|_|\\___|\\__,_|\\__,_|\\___/|___/		\n");
+					printf("                                             | |                                 						\n");
+					printf("                                             |_|                                 						\n");
+					printf("																																														\n");
+				
 					emp=elegir_empleados(em);
 					menu_empleados(em,emp);
 					printf(AZUL_T"Quieres entrar en otro usuario?[s/n]\n"RESET_COLOR);
@@ -612,6 +629,17 @@ printf("                                                                        
 
 		}else if(strcmp(inicio,codigo_Director)==0)
 		{
+
+
+			printf("  __  __              __     _____  _               _             			\n");
+			printf(" |  \\/  |            /_/    |  __ \\(_)             | |            		\n");
+			printf(" | \\  / | ___ _ __  _   _   | |  | |_ _ __ ___  ___| |_ ___  _ __ 			\n");
+			printf(" | |\\/| |/ _ \\ '_ \\| | | |  | |  | | | '__/ _ \\/ __| __/ _ \\| '__|	\n");
+			printf(" | |  | |  __/ | | | |_| |  | |__| | | | |  __/ (__| || (_) | |   			\n");
+			printf(" |_|  |_|\\___|_| |_|\\__,_|  |_____/|_|_|  \\___|\\___|\\__\\___/|_|   \n");
+			printf("                                                                  			\n");
+
+
 			modulo_director(em,emp);
 			
 
