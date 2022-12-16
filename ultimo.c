@@ -103,9 +103,9 @@ void inicizar_meses(Templeados em[])
 	  em[3].meses= 20;
 	  em[4].meses= 3;
 	  em[5].meses= 1;
-		em[6].meses= 1;
-		em[7].meses= 1;
-		em[8].meses= 1;
+	  em[6].meses= 1;
+	  em[7].meses= 1;
+	  em[8].meses= 1;
 	
 }
 
@@ -267,6 +267,7 @@ void imprimir_horarios(Templeados em[],int e)
 
   	}
 }
+
 
 
 
