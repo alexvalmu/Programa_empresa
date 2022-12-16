@@ -201,22 +201,41 @@ int elegir_empleados(Templeados em[])
 
 
 
-//Este módulo sirve para recoger los datos de fichar hora de entrada y salida de cada usuario
+//Este módulo sirve para recoger los datos de fichar hora de entrada y salida de cada usuario, te vuelve a pedir que los introduzcas si introduces un solo dato o si introductes cualquier carácter que no sea un int
 void pregunta_horarios(Templeados em[],int e)
 {	
-	
-	printf("Introduce tu hora de entrada y tu hora de salida:\n");
-	scanf("%i %i",&em[e].entrada,&em[e].salida);
-	cleanbuffer();
-	em[e].horas_totales = em[e].salida - em[e].entrada;
-	
-	if(em[e].horas_totales<0){
-		em[e].horas_totales = fabs(em[e].horas_totales);
+	while (2)
+	{
 
-	} else{
-		em[e].horas_totales = em[e].salida - em[e].entrada;
-	}
 
+		printf("Introduce tu hora de entrada y tu hora de salida:\n");
+		if (scanf("%d%d", &em[e].entrada,&em[e].salida) == 2)
+			{
+				
+				cleanbuffer();
+				em[e].horas_totales = em[e].salida - em[e].entrada;
+	
+				if(em[e].horas_totales<0)
+				{
+					em[e].horas_totales = fabs(em[e].horas_totales);
+				}			
+				else
+				{
+					em[e].horas_totales = em[e].salida - em[e].entrada;
+				}
+				break;
+		}
+
+		else
+		{
+			cleanbuffer();
+		}
+
+
+
+
+	}	
+	
 }
 
 //Este módulo sirve para calcular las horas trabajadas por dia y el sueldo de cada persona y almacenarlo estos datos en las arrays horas_totales y sueldo 
@@ -312,11 +331,11 @@ void menu_empleados(Templeados em[],int e)
 		case 6:
 			break;
 		default:
-			printf("Opción incorrecta");
+			printf("Opción incorrecta\n");
 
 		}
 
-	}while(opcion != 5);
+	}while(opcion != 6);
 }
 
 
